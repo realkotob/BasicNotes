@@ -45,38 +45,46 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 rect_min_size = Vector2( 400, 600 )
 mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Panel" type="Panel" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 2
 custom_styles/panel = SubResource( 1 )
 
-[node name="Control" type="VBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_bottom = 4.0
 rect_min_size = Vector2( 400, 600 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/separation = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="MenuBar" type="Control" parent="Control"]
-editor/display_folded = true
+[node name="MenuBar" type="Control" parent="VBoxContainer"]
 margin_right = 400.0
 margin_bottom = 30.0
 rect_min_size = Vector2( 0, 30 )
 
-[node name="Background" type="Panel" parent="Control/MenuBar"]
+[node name="Background" type="Panel" parent="VBoxContainer/MenuBar"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 0.773804
-margin_right = 0.773804
 rect_min_size = Vector2( 400, 30 )
 mouse_filter = 2
 custom_styles/panel = SubResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="MenuButton" type="MenuButton" parent="Control/MenuBar"]
+[node name="MenuButton" type="MenuButton" parent="VBoxContainer/MenuBar"]
 margin_right = 42.0
 margin_bottom = 30.0
 rect_min_size = Vector2( 30, 30 )
@@ -86,15 +94,14 @@ custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_colors/font_color_hover = Color( 0.352941, 0.34902, 0.34902, 1 )
 text = "..."
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Control/MenuBar"]
-editor/display_folded = true
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MenuBar"]
 anchor_left = 1.0
 anchor_right = 1.0
 margin_left = -64.0
 margin_bottom = 31.0
 mouse_filter = 2
 
-[node name="MinimizeButton" type="Button" parent="Control/MenuBar/HBoxContainer"]
+[node name="MinimizeButton" type="Button" parent="VBoxContainer/MenuBar/HBoxContainer"]
 margin_right = 30.0
 margin_bottom = 31.0
 rect_min_size = Vector2( 30, 30 )
@@ -108,7 +115,7 @@ enabled_focus_mode = 0
 text = "_"
 flat = true
 
-[node name="CloseButton" type="Button" parent="Control/MenuBar/HBoxContainer"]
+[node name="CloseButton" type="Button" parent="VBoxContainer/MenuBar/HBoxContainer"]
 margin_left = 34.0
 margin_right = 64.0
 margin_bottom = 31.0
@@ -122,20 +129,33 @@ enabled_focus_mode = 0
 text = "X"
 flat = true
 
-[node name="TextInput" type="Control" parent="Control"]
+[node name="TextInput" type="Control" parent="VBoxContainer"]
 margin_top = 30.0
 margin_right = 400.0
-margin_bottom = 604.0
+margin_bottom = 600.0
 rect_min_size = Vector2( 400, 570 )
 mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="TextEdit" type="TextEdit" parent="Control/TextInput"]
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/TextInput"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_bottom = -4.0
-rect_min_size = Vector2( 400, 570 )
+margin_right = 3.05176e-005
+custom_constants/margin_right = 1
+custom_constants/margin_top = 1
+custom_constants/margin_left = 1
+custom_constants/margin_bottom = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextEdit" type="TextEdit" parent="VBoxContainer/TextInput/MarginContainer"]
+margin_left = 1.0
+margin_top = 1.0
+margin_right = 399.0
+margin_bottom = 569.0
+rect_min_size = Vector2( 398, 568 )
 custom_styles/normal = SubResource( 6 )
 custom_fonts/font = SubResource( 7 )
 custom_colors/selection_color = Color( 0.666667, 0.666667, 0.666667, 1 )
@@ -145,15 +165,18 @@ custom_colors/font_color = Color( 0, 0, 0, 1 )
 smooth_scrolling = true
 wrap_enabled = true
 caret_blink = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="OptionsMenu" type="WindowDialog" parent="."]
-editor/display_folded = true
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 56.8309
 margin_top = 132.404
 margin_right = -43.1691
 margin_bottom = -190.596
+window_title = "Options"
 
 [node name="AlwaysOnTopButton" type="CheckButton" parent="OptionsMenu"]
 margin_left = 6.0
@@ -181,6 +204,7 @@ margin_right = 252.309
 margin_bottom = 87.0292
 text = "Editor Color"
 color = Color( 1, 0.94902, 0.670588, 1 )
+edit_alpha = false
 
 [node name="EditorColorLabel" type="Label" parent="OptionsMenu"]
 margin_left = 25.8404
@@ -190,6 +214,28 @@ margin_bottom = 78.6136
 custom_fonts/font = SubResource( 8 )
 text = "Editor Color"
 
+[node name="AboutMenu" type="WindowDialog" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 56.8309
+margin_top = 132.404
+margin_right = -43.1691
+margin_bottom = -190.596
+window_title = "About"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="AboutMenu"]
+margin_left = 66.0176
+margin_top = 60.8734
+margin_right = 106.018
+margin_bottom = 74.8734
+text = "Filler, Please Replace."
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="ResizeButton" type="TextureButton" parent="."]
 anchor_left = 1.0
 anchor_top = 1.0
@@ -197,13 +243,14 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = -16.0
 margin_top = -16.0
+mouse_default_cursor_shape = 12
 texture_normal = ExtResource( 3 )
 texture_pressed = ExtResource( 4 )
 texture_hover = ExtResource( 4 )
-[connection signal="gui_input" from="Control/MenuBar" to="." method="_on_TopContainer_gui_input"]
-[connection signal="pressed" from="Control/MenuBar/HBoxContainer/MinimizeButton" to="." method="_on_MinimizeButton_pressed"]
-[connection signal="pressed" from="Control/MenuBar/HBoxContainer/CloseButton" to="." method="_on_CloseButton_pressed"]
-[connection signal="text_changed" from="Control/TextInput/TextEdit" to="." method="_on_TextEdit_text_changed"]
+[connection signal="gui_input" from="VBoxContainer/MenuBar" to="." method="_on_TopContainer_gui_input"]
+[connection signal="pressed" from="VBoxContainer/MenuBar/HBoxContainer/MinimizeButton" to="." method="_on_MinimizeButton_pressed"]
+[connection signal="pressed" from="VBoxContainer/MenuBar/HBoxContainer/CloseButton" to="." method="_on_CloseButton_pressed"]
+[connection signal="text_changed" from="VBoxContainer/TextInput/MarginContainer/TextEdit" to="." method="_on_TextEdit_text_changed"]
 [connection signal="toggled" from="OptionsMenu/AlwaysOnTopButton" to="." method="_on_AlwaysOnTopButton_toggled"]
 [connection signal="pressed" from="OptionsMenu/DeleteDataButton" to="." method="_on_DeleteDataButton_pressed"]
 [connection signal="color_changed" from="OptionsMenu/ColorPickerButton" to="." method="_on_ColorPickerButton_color_changed"]
